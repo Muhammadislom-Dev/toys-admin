@@ -51,21 +51,6 @@ export default function AboutTable() {
                     <i>Image</i>
                   </b>
                 </TableCell>
-                <TableCell align="center">
-                  <b>
-                    <i>Title</i>
-                  </b>
-                </TableCell>
-                <TableCell align="center">
-                  <b>
-                    <i>Title RU</i>
-                  </b>
-                </TableCell>
-                <TableCell align="right">
-                  <b>
-                    <i>Description</i>
-                  </b>
-                </TableCell>
                 <TableCell align="right">
                   <CreateModal />
                 </TableCell>
@@ -77,17 +62,14 @@ export default function AboutTable() {
                   <TableRow key={worker.id}>
                     <TableCell width={200} align="center">
                       <img
-                        src={`${IMAGE_URL + worker.image_src}`}
-                        alt={`${worker.title_uz}`}
+                        src={`${IMAGE_URL + worker.images}`}
+                        alt=""
                         height={50}
                         style={{
                           objectFit: "contain"
                         }}
                       />
                     </TableCell>
-                    <TableCell align="center">{worker.title_uz}</TableCell>
-                    <TableCell align="center">{worker.description_ru}</TableCell>
-                    <TableCell align="right">{worker.description_uz}</TableCell>
                     <TableCell align="right">
                       <div
                         style={{

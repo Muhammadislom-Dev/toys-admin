@@ -20,7 +20,7 @@ export default function EditModal({ id }) {
   const { updateNewsById, fetchNewsById, fetchWorkers } = useActions();
   const { news, newsLoading } = useSelector((state) => state.news);
   const {
-    workers: { data }
+    workers: { data },
   } = useSelector((state) => state.workers);
 
   React.useEffect(() => {
@@ -43,25 +43,18 @@ export default function EditModal({ id }) {
     const data = new FormData(event.currentTarget);
     const formData = data.get("img_src")
       ? {
-          image: data.get("img_src"),
-          title_uz: data.get("title_uz"),
+          file: data.get("file"),
           title_en: data.get("title_en"),
           title_ru: data.get("title_ru"),
-          text_uz: data.get("text_uz"),
-          text_en: data.get("text_en"),
-          text_ru: data.get("text_ru")
         }
       : {
-          title_uz: data.get("title_uz"),
+          file: data.get("file"),
           title_en: data.get("title_en"),
           title_ru: data.get("title_ru"),
-          text_uz: data.get("text_uz"),
-          text_en: data.get("text_en"),
-          text_ru: data.get("text_ru")
         };
     updateNewsById({
       id,
-      formData
+      formData,
     });
     handleClose();
   };
@@ -76,8 +69,7 @@ export default function EditModal({ id }) {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
+        aria-describedby="alert-dialog-slide-description">
         <DialogTitle>{"Edit company"}</DialogTitle>
         {news?.data && !newsLoading && (
           <Box component={"form"} onSubmit={handleSubmit} noValidate>
@@ -87,16 +79,15 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <input
                   id="image-input"
                   className="form-control"
                   style={{
                     width: "250px",
                     marginRight: "20px",
-                    fontSize: "1rem"
+                    fontSize: "1rem",
                   }}
                   name="img_src"
                   type={"file"}
@@ -115,9 +106,8 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <TextField
                   sx={{ width: 230 }}
                   label="Title RU"
@@ -138,9 +128,8 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <TextField
                   fullWidth
                   label="Text"
@@ -153,9 +142,8 @@ export default function EditModal({ id }) {
               </div>
               <div
                 style={{
-                  marginBottom: "10px"
-                }}
-              >
+                  marginBottom: "10px",
+                }}>
                 <TextField
                   fullWidth
                   label="Text RU"
@@ -168,9 +156,8 @@ export default function EditModal({ id }) {
               </div>
               <div
                 style={{
-                  marginBottom: "10px"
-                }}
-              >
+                  marginBottom: "10px",
+                }}>
                 <TextField
                   fullWidth
                   label="Text EN"

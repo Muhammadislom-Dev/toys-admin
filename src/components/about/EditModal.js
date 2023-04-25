@@ -34,13 +34,7 @@ export default function EditModal({ id }) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const newData = new FormData();
-    newData.append("image", data.get("image"));
-    newData.append("title_uz", data.get("title_uz"));
-    newData.append("title_ru", data.get("title_ru"));
-    newData.append("title_en", data.get("title_en"));
-    newData.append("description_uz", data.get("description_uz"));
-    newData.append("description_ru", data.get("description_ru"));
-    newData.append("description_en", data.get("description_en"));
+    newData.append("images", data.get("images"));
     updateAboutById({ newData, id });
     handleClose();
   };
@@ -76,76 +70,10 @@ export default function EditModal({ id }) {
                     marginRight: "20px",
                     fontSize: "1rem"
                   }}
-                  name="image"
+                  name="images"
                   type="file"
                 />
-                <TextField
-                  sx={{ width: 230 }}
-                  label="Title"
-                  name="title_uz"
-                  required
-                  defaultValue={singleAbout?.data?.title_uz}
-                />
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
-                <TextField
-                  sx={{ width: 230 }}
-                  label="Title RU"
-                  name="title_ru"
-                  required
-                  defaultValue={singleAbout?.data?.title_ru}
-                />
-                <TextField
-                  sx={{ width: 230 }}
-                  label="Title EN"
-                  name="title_en"
-                  required
-                  defaultValue={singleAbout?.data?.title_en}
-                />
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
-                <TextField
-                  sx={{ width: 230 }}
-                  label="Description"
-                  name="description_uz"
-                  multiline
-                  maxRows={4}
-                  required
-                  defaultValue={singleAbout?.data?.description_uz}
-                />
-                <TextField
-                  sx={{ width: 230 }}
-                  label="Description RU"
-                  name="description_ru"
-                  multiline
-                  maxRows={4}
-                  required
-                  defaultValue={singleAbout?.data?.description_ru}
-                />
-              </div>
-              <TextField
-                sx={{ width: 550 }}
-                label="Description EN"
-                name="description_en"
-                multiline
-                maxRows={4}
-                required
-                defaultValue={singleAbout?.data?.description_en}
-              />
             </DialogContent>
           )}
           <DialogActions>

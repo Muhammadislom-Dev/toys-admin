@@ -18,10 +18,10 @@ function App() {
         <div>
           <MiniDrawer>
             <PrivateRoute component={CompanyTable} exact />
-            <PrivateRoute component={TypesTable} path="/discount" exact />
+            {/* <PrivateRoute component={TypesTable} path="/discount" exact /> */}
             <PrivateRoute component={ProductTable} path="/products" exact />
             <PrivateRoute component={NewsTable} path="/news" exact />
-            {/* <PrivateRoute component={AboutTable} path="/about" exact /> */}
+            <PrivateRoute component={AboutTable} path="/about" exact />
           </MiniDrawer>
         </div>
       </Switch>

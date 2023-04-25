@@ -20,7 +20,7 @@ export default function EditModal({ id }) {
   const { updateProductById, fetchProductById, fetchCompanies } = useActions();
   const { products, productsLoading } = useSelector((state) => state.products);
   const {
-    companies: { data }
+    companies: { data },
   } = useSelector((state) => state.companies);
 
   React.useEffect(() => {
@@ -43,28 +43,38 @@ export default function EditModal({ id }) {
     const data = new FormData(event.currentTarget);
     const formData = data.get("image")
       ? {
-          image: data.get("image"),
-          name_uz: data.get("name_uz"),
+          images: data.get("images"),
+          images: data.get("images"),
           name_ru: data.get("name_ru"),
           name_en: data.get("name_en"),
-          text_uz: data.get("text_uz"),
           text_ru: data.get("text_ru"),
           text_en: data.get("text_en"),
-          category_id: data.get("category_id")
+          multipack_type: data.get("multipack_type"),
+          package_size: data.get("package_size"),
+          package_quantity: data.get("package_quantity"),
+          type_of_packaging: data.get("type_of_packaging"),
+          toy_size: data.get("toy_size"),
+          articul: data.get("articul"),
+          category_id: data.get("category_id"),
         }
       : {
-          image: data.get("image"),
-          name_uz: data.get("name_uz"),
+          images: data.get("images"),
+          images: data.get("images"),
           name_ru: data.get("name_ru"),
           name_en: data.get("name_en"),
-          text_uz: data.get("text_uz"),
           text_ru: data.get("text_ru"),
           text_en: data.get("text_en"),
-          category_id: data.get("category_id")
+          multipack_type: data.get("multipack_type"),
+          package_size: data.get("package_size"),
+          package_quantity: data.get("package_quantity"),
+          type_of_packaging: data.get("type_of_packaging"),
+          toy_size: data.get("toy_size"),
+          articul: data.get("articul"),
+          category_id: data.get("category_id"),
         };
     updateProductById({
       id: products.data.id,
-      formData
+      formData,
     });
     handleClose();
   };
@@ -79,8 +89,7 @@ export default function EditModal({ id }) {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
+        aria-describedby="alert-dialog-slide-description">
         <DialogTitle>{"Edit company"}</DialogTitle>
         {products?.data && !productsLoading && (
           <Box component={"form"} onSubmit={handleSubmit} noValidate>
@@ -90,12 +99,11 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <input
                   style={{
-                    fontSize: "1rem"
+                    fontSize: "1rem",
                   }}
                   name="image"
                   type="file"
@@ -114,9 +122,8 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <TextField
                   sx={{ width: 230 }}
                   label="Name RU"
@@ -137,12 +144,11 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <TextField
                   sx={{
-                    width: 230
+                    width: 230,
                   }}
                   label="text_uz"
                   name="text_uz"
@@ -175,16 +181,14 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <select
                   className="form-select"
                   placeholder="Company"
                   required
                   name="category_id"
-                  defaultValue={products.data.category_id}
-                >
+                  defaultValue={products.data.category_id}>
                   <option value="" disabled>
                     Select Company
                   </option>

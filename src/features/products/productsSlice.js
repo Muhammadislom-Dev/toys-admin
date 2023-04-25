@@ -16,7 +16,7 @@ const initialState = {
     singleProductError: undefined,
 };
 
-const prefix = 'catalogs';
+const prefix = 'products';
 const productPrefix = prefix;
 const editProductPrefix = `${prefix}/edit`;
 const createProductPrefix = `${prefix}/create`;
@@ -27,7 +27,7 @@ export const fetchProducts = createAsyncThunk(
     productPrefix,
     async (_, thunkAPI) => {
         try {
-            const { data } = await axios.get('catalogs');
+            const { data } = await axios.get('products');
             return data;
         } catch (e) {
             const message = getErrorMessage(e);
@@ -41,7 +41,7 @@ export const createProduct = createAsyncThunk(
     async (formData, thunkAPI) => {
         try {
             const { data } = await axios.post(
-                'catalogs',
+                'products',
                 formData,
                 withToken(true)
             );
@@ -60,7 +60,7 @@ export const deleteProductById = createAsyncThunk(
     async (id, thunkAPI) => {
         try {
             const { message } = await axios.delete(
-                `catalogs/${id}`,
+                `products/${id}`,
                 withToken()
             );
             notify('Product was deleted  successfully', 'success');
@@ -77,7 +77,7 @@ export const fetchProductById = createAsyncThunk(
     getOneProductPrefix,
     async (id, thunkAPI) => {
         try {
-            const { data } = await axios.get(`catalogs/${id}`);
+            const { data } = await axios.get(`products/${id}`);
             return data;
         } catch (e) {
             const message = getErrorMessage(e);
@@ -91,7 +91,7 @@ export const updateProductById = createAsyncThunk(
     async (options, thunkAPI) => {
         try {
             const { message } = await axios.put(
-                `catalogs/${options.id}`,
+                `products/${options.id}`,
                 options.formData,
                 withToken(true)
             );

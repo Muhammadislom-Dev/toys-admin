@@ -48,15 +48,13 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
-        aria-label="first page"
-      >
+        aria-label="first page">
         {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
-        aria-label="previous page"
-      >
+        aria-label="previous page">
         {theme.direction === "rtl" ? (
           <KeyboardArrowRight />
         ) : (
@@ -66,8 +64,7 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
+        aria-label="next page">
         {theme.direction === "rtl" ? (
           <KeyboardArrowLeft />
         ) : (
@@ -77,8 +74,7 @@ function TablePaginationActions(props) {
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
+        aria-label="last page">
         {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
@@ -89,7 +85,7 @@ TablePaginationActions.propTypes = {
   count: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired
+  rowsPerPage: PropTypes.number.isRequired,
 };
 
 export default function ProductTable() {
@@ -132,18 +128,12 @@ export default function ProductTable() {
           <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
             <TableHead
               style={{
-                backgroundColor: "rgb(220, 220, 220)"
-              }}
-            >
+                backgroundColor: "rgb(220, 220, 220)",
+              }}>
               <TableRow>
                 <TableCell>
                   <b>
                     <i>Image</i>
-                  </b>
-                </TableCell>
-                <TableCell>
-                  <b>
-                    <i>Name UZ</i>
                   </b>
                 </TableCell>
                 <TableCell>
@@ -154,11 +144,6 @@ export default function ProductTable() {
                 <TableCell align="right">
                   <b>
                     <i>text_ru</i>
-                  </b>
-                </TableCell>
-                <TableCell align="right">
-                  <b>
-                    <i>text_uz</i>
                   </b>
                 </TableCell>
                 <TableCell align="right">
@@ -182,30 +167,23 @@ export default function ProductTable() {
                           src={`${IMAGE_URL + product.image_src}`}
                           height={50}
                           style={{
-                            objectFit: "contain"
+                            objectFit: "contain",
                           }}
                         />
                       </TableCell>
-                      <TableCell>{product.name_uz}</TableCell>
                       <TableCell>{product.name_ru}</TableCell>
                       <TableCell>{product.text_ru}</TableCell>
-                      <TableCell align="right">{product.text_uz}</TableCell>
-                      <TableCell align="right">
-                        {product?.company?.name_uz}
-                      </TableCell>
                       <TableCell align="right">
                         <div
                           style={{
                             display: "flex",
                             alignItems: "center",
-                            justifyContent: "flex-end"
-                          }}
-                        >
+                            justifyContent: "flex-end",
+                          }}>
                           <EditModal id={product.id} />
                           <Button
                             color="error"
-                            onClick={handleDelete.bind(null, product.id)}
-                          >
+                            onClick={handleDelete.bind(null, product.id)}>
                             Delete
                           </Button>
                         </div>
@@ -223,9 +201,9 @@ export default function ProductTable() {
                   page={page}
                   SelectProps={{
                     inputProps: {
-                      "aria-label": "rows per page"
+                      "aria-label": "rows per page",
                     },
-                    native: true
+                    native: true,
                   }}
                   onPageChange={handleChangePage}
                   onRowsPerPageChange={handleChangeRowsPerPage}

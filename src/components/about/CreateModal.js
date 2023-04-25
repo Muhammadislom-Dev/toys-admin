@@ -33,13 +33,7 @@ export default function CreateModal() {
     const data = new FormData(event.currentTarget);
     const newData = new FormData();
 
-    newData.append("image", data.get("image"));
-    newData.append("title_uz", data.get("title_uz"));
-    newData.append("title_ru", data.get("title_ru"));
-    newData.append("title_en", data.get("title_en"));
-    newData.append("description_uz", data.get("description_uz"));
-    newData.append("description_ru", data.get("description_ru"));
-    newData.append("description_en", data.get("description_en"));
+    newData.append("images", data.get("images"));
     createAbout(newData);
     handleClose();
   };
@@ -74,71 +68,11 @@ export default function CreateModal() {
                   marginRight: "20px",
                   fontSize: "1rem"
                 }}
-                name="image"
+                name="images"
                 type="file"
                 required
               />
-              <TextField
-                sx={{ width: 230 }}
-                label="Title"
-                name="title_uz"
-                required
-              />
             </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
-              <TextField
-                sx={{ width: 230 }}
-                label="Title RU"
-                name="title_ru"
-                required
-              />
-              <TextField
-                sx={{ width: 230 }}
-                label="Title EN"
-                name="title_en"
-                required
-              />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
-              <TextField
-                sx={{ width: 230 }}
-                label="Description"
-                name="description_uz"
-                multiline
-                maxRows={4}
-                required
-              />
-              <TextField
-                sx={{ width: 230 }}
-                label="Description RU"
-                name="description_ru"
-                multiline
-                maxRows={4}
-                required
-              />
-            </div>
-            <TextField
-              sx={{ width: 500 }}
-              label="Description EN"
-              name="description_en"
-              multiline
-              maxRows={4}
-              required
-            />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>

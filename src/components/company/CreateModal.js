@@ -32,13 +32,10 @@ export default function CreateModal() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     createCompany({
-      image: data.get("image"),
-      name_uz: data.get("name_uz"),
       name_ru: data.get("name_ru"),
       name_en: data.get("name_en"),
       text_ru: data.get("text_ru"),
-      text_uz: data.get("text_uz"),
-      text_en: data.get("text_en")
+      text_en: data.get("text_en"),
     });
     handleClose();
   };
@@ -53,8 +50,7 @@ export default function CreateModal() {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
+        aria-describedby="alert-dialog-slide-description">
         <DialogTitle>{"Add categories"}</DialogTitle>
         <form onSubmit={handleSubmit}>
           <DialogContent>
@@ -62,28 +58,8 @@ export default function CreateModal() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                marginBottom: "10px"
-              }}
-            >
-              <div>
-                <label htmlFor="company-image">For company image:</label>
-                <input
-                  id="company-image"
-                  style={{
-                    fontSize: "1rem",
-                    marginBottom: "20px"
-                  }}
-                  name="image"
-                  type="file"
-                  required
-                />
-                <TextField
-                  sx={{ width: 230 }}
-                  label="Name"
-                  name="name_uz"
-                  required
-                />
-              </div>
+                marginBottom: "10px",
+              }}>
               <div>
                 <TextField
                   sx={{ width: 230 }}
@@ -104,20 +80,13 @@ export default function CreateModal() {
             <div
               style={{
                 display: "flex",
-                marginBottom: "10px"
-              }}
-            >
+                marginBottom: "10px",
+              }}>
               <div>
                 <TextField
                   sx={{ width: 230, marginBottom: "10px" }}
                   label="text_ru"
                   name="text_ru"
-                  required
-                />
-                <TextField
-                  sx={{ width: 230 }}
-                  label="text_uz"
-                  name="text_uz"
                   required
                 />
               </div>

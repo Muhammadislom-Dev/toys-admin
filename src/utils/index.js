@@ -1,37 +1,35 @@
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export const withToken = (file) => {
-    const { token } = JSON.parse(
-        localStorage.getItem('archa_admin_token') || ''
-    );
-    return {
-        headers: {
-            'Content-Type': file ? 'multipart/form-data' : 'application/json',
-            Authorization: `Bearer ${token || ''}`,
-        },
-    };
+  const { token } = JSON.parse(localStorage.getItem("archa_admin_token") || "");
+  return {
+    headers: {
+      "Content-Type": file ? "multipart/form-data" : "application/json",
+      Authorization: `Bearer ${token || ""}`,
+    },
+  };
 };
 
 export const getErrorMessage = (e) => {
-    const { response = {} } = e;
-    const { data = {} } = response;
-    const { message = 'Internal server error!' } = data;
-    return message;
+  const { response = {} } = e;
+  const { data = {} } = response;
+  const { message = "Internal server error!" } = data;
+  return message;
 };
 
 export const notify = (message, type) => {
-    if (type === 'success') {
-        return toast.success(message, {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000,
-        });
-    } else if (type === 'error') {
-        return toast.error(message, {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000,
-        });
-    }
+  if (type === "success") {
+    return toast.success(message, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+    });
+  } else if (type === "error") {
+    return toast.error(message, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+    });
+  }
 };
 
 // export const redirectToLogin = (message) => {
@@ -43,20 +41,20 @@ export const notify = (message, type) => {
 // };
 
 export const inputClear = () => {
-    let inputs = document.querySelectorAll('input');
-    for (let i = 0; i < inputs.length; i++) {
-        inputs[i].value = null;
-    }
-    let textAreas = document.querySelectorAll('textarea');
-    for (let i = 0; i < textAreas.length; i++) {
-        textAreas[i].value = null;
-    }
-    let slects = document.querySelectorAll('select');
-    for (let i = 0; i < slects.length; i++) {
-        slects[i].value = '';
-    }
+  let inputs = document.querySelectorAll("input");
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].value = null;
+  }
+  let textAreas = document.querySelectorAll("textarea");
+  for (let i = 0; i < textAreas.length; i++) {
+    textAreas[i].value = null;
+  }
+  let slects = document.querySelectorAll("select");
+  for (let i = 0; i < slects.length; i++) {
+    slects[i].value = "";
+  }
 };
 
-export const IMAGE_URL = 'https://v1.archamedical.uz/api/uploads/images/';
+export const IMAGE_URL = "http://206.189.128.106:4444/api/uploads/images/";
 
-axios.defaults.baseURL = 'https://v1.archamedical.uz/api/';
+axios.defaults.baseURL = "http://206.189.128.106:4444/api/";

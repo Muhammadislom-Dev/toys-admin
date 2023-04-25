@@ -173,14 +173,13 @@ export default function NewsTable() {
                     <TableRow key={element.id}>
                       <TableCell width={200}>
                         <img
-                          src={`${IMAGE_URL + element.image_src}`}
+                          src={`${IMAGE_URL + element.src}`}
                           height={50}
                           style={{
                             objectFit: "contain"
                           }}
                         />
                       </TableCell>
-                      <TableCell>{element.title_uz}</TableCell>
                       <TableCell>{element.title_ru}</TableCell>
                       <TableCell align="right">
                         <div

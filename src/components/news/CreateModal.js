@@ -29,20 +29,16 @@ export default function CreateModal() {
 
   const { createNews } = useActions();
   const {
-    workers: { data }
+    workers: { data },
   } = useSelector((state) => state.workers);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     createNews({
-      image: data.get("image"),
-      title_uz: data.get("title_uz"),
+      file: data.get("file"),
       title_en: data.get("title_en"),
       title_ru: data.get("title_ru"),
-      text_uz: data.get("text_uz"),
-      text_en: data.get("text_en"),
-      text_ru: data.get("text_ru")
     });
     handleClose();
   };
@@ -57,8 +53,7 @@ export default function CreateModal() {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
+        aria-describedby="alert-dialog-slide-description">
         <DialogTitle>{"Add company"}</DialogTitle>
         <form onSubmit={handleSubmit}>
           <DialogContent>
@@ -67,25 +62,18 @@ export default function CreateModal() {
                 display: "flex",
                 alignItems: "center",
                 marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
+                justifyContent: "space-between",
+              }}>
               <input
                 id="image-input"
                 className="form-control"
                 style={{
                   width: "250px",
                   marginRight: "20px",
-                  fontSize: "1rem"
+                  fontSize: "1rem",
                 }}
-                name="image"
+                name="file"
                 type="file"
-                // required
-              />
-              <TextField
-                sx={{ width: 230 }}
-                label="Title"
-                name="title_uz"
                 required
               />
             </div>
@@ -94,64 +82,20 @@ export default function CreateModal() {
                 display: "flex",
                 alignItems: "center",
                 marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
+                justifyContent: "space-between",
+              }}>
               <TextField
-                sx={{ width: 230 }}
+                sx={{ width: 550, marginBottom: "10px" }}
                 label="Title RU"
                 name="title_ru"
                 required
               />
+            </div>
+            <div>
               <TextField
-                sx={{ width: 230 }}
+                sx={{ width: 550, marginBottom: "10px" }}
                 label="Title EN"
                 name="title_en"
-                required
-              />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
-              <TextField
-                fullWidth
-                label="Text"
-                name="text_uz"
-                multiline
-                maxRows={4}
-                required
-              />
-            </div>
-            <div
-              style={{
-                marginBottom: "10px"
-              }}
-            >
-              <TextField
-                fullWidth
-                label="Text RU"
-                name="text_ru"
-                multiline
-                maxRows={4}
-                required
-              />
-            </div>
-            <div
-              style={{
-                marginBottom: "10px"
-              }}
-            >
-              <TextField
-                fullWidth
-                label="Text EN"
-                name="text_en"
-                multiline
-                maxRows={4}
                 required
               />
             </div>

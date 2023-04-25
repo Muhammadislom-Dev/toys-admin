@@ -29,7 +29,7 @@ export default function CreateModal() {
 
   const { createProduct, fetchCompanies } = useActions();
   const {
-    companies: { data }
+    companies: { data },
   } = useSelector((state) => state.companies);
 
   React.useEffect(() => {
@@ -40,14 +40,19 @@ export default function CreateModal() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     createProduct({
-      image: data.get("image"),
-      name_uz: data.get("name_uz"),
+      images: data.get("images"),
+      images: data.get("images"),
       name_ru: data.get("name_ru"),
       name_en: data.get("name_en"),
-      text_uz: data.get("text_uz"),
       text_ru: data.get("text_ru"),
       text_en: data.get("text_en"),
-      category_id: data.get("category_id")
+      multipack_type: data.get("multipack_type"),
+      package_size: data.get("package_size"),
+      package_quantity: data.get("package_quantity"),
+      type_of_packaging: data.get("type_of_packaging"),
+      toy_size: data.get("toy_size"),
+      articul: data.get("articul"),
+      category_id: data.get("category_id"),
     });
     handleClose();
   };
@@ -62,8 +67,7 @@ export default function CreateModal() {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
+        aria-describedby="alert-dialog-slide-description">
         <DialogTitle>{"Add company"}</DialogTitle>
         <form onSubmit={handleSubmit}>
           <DialogContent>
@@ -72,66 +76,48 @@ export default function CreateModal() {
                 display: "flex",
                 alignItems: "center",
                 marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
+                justifyContent: "space-between",
+              }}>
               <input
                 className="form-control"
                 style={{
                   width: "250px",
                   marginRight: "20px",
-                  fontSize: "1rem"
+                  fontSize: "1rem",
                 }}
-                name="image"
+                name="images"
                 type="file"
                 required
               />
-              <TextField
-                sx={{ width: 230 }}
-                label="Name"
-                name="name_uz"
+              <input
+                className="form-control"
+                style={{
+                  width: "250px",
+                  marginRight: "20px",
+                  fontSize: "1rem",
+                }}
+                name="images"
+                type="file"
                 required
               />
             </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
+            <div>
               <TextField
-                sx={{ width: 230 }}
-                label="Name RU"
-                name="name_ru"
-                required
-              />
-              <TextField
-                sx={{ width: 230 }}
-                label="Name EN"
-                name="name_en"
+                sx={{ width: 550, marginBottom: "10px" }}
+                label="multipack_type"
+                name="multipack_type"
                 required
               />
             </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
+            <TextField
+              sx={{ width: 550, marginBottom: "10px" }}
+              label="package_size"
+              name="package_size"
+              required
+            />
+            <div>
               <TextField
-                sx={{ width: 230 }}
-                label="text_uz"
-                name="text_uz"
-                multiline
-                maxRows={4}
-                required
-              />
-              <TextField
-                sx={{ width: 230 }}
+                sx={{ width: 550, marginBottom: "10px" }}
                 label="text_ru"
                 name="text_ru"
                 multiline
@@ -147,27 +133,57 @@ export default function CreateModal() {
               maxRows={4}
               required
             />
+            <TextField
+              sx={{ width: 550, marginBottom: "10px" }}
+              label="package_quantity"
+              name="package_quantity"
+              multiline
+              maxRows={4}
+              required
+            />
+            <TextField
+              sx={{ width: 550, marginBottom: "10px" }}
+              label="type_of_packaging"
+              name="type_of_packaging"
+              multiline
+              maxRows={4}
+              required
+            />
+            <TextField
+              sx={{ width: 550, marginBottom: "10px" }}
+              label="toy_size"
+              name="toy_size"
+              multiline
+              maxRows={4}
+              required
+            />
+            <TextField
+              sx={{ width: 550, marginBottom: "10px" }}
+              label="articul"
+              name="articul"
+              multiline
+              maxRows={4}
+              required
+            />
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
+                justifyContent: "space-between",
+              }}>
               <select
                 placeholder="Company"
                 className="form-select"
                 required
                 name="category_id"
-                defaultValue={""}
-              >
+                defaultValue={""}>
                 <option value="" disabled>
                   Select Category
                 </option>
                 {data?.map((option) => (
                   <option key={option.id} value={option.id}>
-                    {option.name_uz}
+                    {option.name_ru}
                   </option>
                 ))}
               </select>

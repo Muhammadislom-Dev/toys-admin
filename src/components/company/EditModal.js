@@ -38,25 +38,20 @@ export default function EditModal({ id }) {
     const data = new FormData(event.currentTarget);
     const formData = data.get("image")
       ? {
-          image: data.get("image"),
-          name_uz: data.get("name_uz"),
           name_ru: data.get("name_ru"),
           name_en: data.get("name_en"),
           text_ru: data.get("text_ru"),
-          text_uz: data.get("text_uz"),
-          text_en: data.get("text_en")
+          text_en: data.get("text_en"),
         }
       : {
-          name_uz: data.get("name_uz"),
           name_ru: data.get("name_ru"),
           name_en: data.get("name_en"),
           text_ru: data.get("text_ru"),
-          text_uz: data.get("text_uz"),
-          text_en: data.get("text_en")
+          text_en: data.get("text_en"),
         };
     updateCompanyById({
       id,
-      formData
+      formData,
     });
     handleClose();
   };
@@ -71,8 +66,7 @@ export default function EditModal({ id }) {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
+        aria-describedby="alert-dialog-slide-description">
         <DialogTitle>{"Edit company"}</DialogTitle>
         {singleCompany?.data && !companiesLoading && (
           <Box component={"form"} onSubmit={handleSubmit} noValidate>
@@ -81,16 +75,15 @@ export default function EditModal({ id }) {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  marginBottom: "10px"
-                }}
-              >
+                  marginBottom: "10px",
+                }}>
                 <div>
                   <label htmlFor="company-image">For company image:</label>
                   <input
                     id="company-image"
                     style={{
                       fontSize: "1rem",
-                      marginBottom: "20px"
+                      marginBottom: "20px",
                     }}
                     name="image"
                     type="file"
@@ -126,14 +119,13 @@ export default function EditModal({ id }) {
               <div
                 style={{
                   display: "flex",
-                  marginBottom: "10px"
-                }}
-              >
+                  marginBottom: "10px",
+                }}>
                 <div>
                   <TextField
                     sx={{
                       width: 230,
-                      marginBottom: "10px"
+                      marginBottom: "10px",
                     }}
                     label="Description"
                     name="text_uz"
