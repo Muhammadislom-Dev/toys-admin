@@ -1,0 +1,241 @@
+import * as React from "react";
+import PropTypes from "prop-types";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import { Button, TableHead } from "@mui/material";
+import { useSelector } from "react-redux";
+import CreateModal from "./CreateModal";
+import useActions from "../../hooks/useActions";
+import Loader from "../layout/loader";
+import EditModal from "./EditModal";
+import { IMAGE_URL } from "../../utils";
+
+function TablePaginationActions(props) {
+  const theme = useTheme();
+  const { count, page, rowsPerPage, onPageChange } = props;
+
+  const handleFirstPageButtonClick = (event) => {
+    onPageChange(event, 0);
+  };
+
+  const handleBackButtonClick = (event) => {
+    onPageChange(event, page - 1);
+  };
+
+  const handleNextButtonClick = (event) => {
+    onPageChange(event, page + 1);
+  };
+
+  const handleLastPageButtonClick = (event) => {
+    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+  };
+
+  return (
+    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+      <IconButton
+        onClick={handleFirstPageButtonClick}
+        disabled={page === 0}
+        aria-label="first page"
+      >
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
+      </IconButton>
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        aria-label="previous page"
+      >
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
+      </IconButton>
+      <IconButton
+        onClick={handleNextButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="next page"
+      >
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
+      </IconButton>
+      <IconButton
+        onClick={handleLastPageButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="last page"
+      >
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
+      </IconButton>
+    </Box>
+  );
+}
+
+TablePaginationActions.propTypes = {
+  count: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
+  rowsPerPage: PropTypes.number.isRequired
+};
+
+export default function ProductTable() {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [data, setData] = React.useState([]);
+  const { products, singleProductLoading, productsLoading } = useSelector(
+    (state) => state.products
+  );
+
+  const { deleteProductById, fetchProducts } = useActions();
+
+  React.useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts, singleProductLoading]);
+
+  React.useEffect(() => {
+    if (Array.isArray(products?.data)) setData(products.data);
+  }, [products, productsLoading]);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleDelete = (id) => {
+    deleteProductById(id);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  return (
+    <>
+      {singleProductLoading ? (
+        <Loader />
+      ) : (
+        <TableContainer component={Paper} variant="outlined">
+          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+            <TableHead
+              style={{
+                backgroundColor: "rgb(220, 220, 220)"
+              }}
+            >
+              <TableRow>
+                <TableCell>
+                  <b>
+                    <i>Image</i>
+                  </b>
+                </TableCell>
+                <TableCell>
+                  <b>
+                    <i>Name UZ</i>
+                  </b>
+                </TableCell>
+                <TableCell>
+                  <b>
+                    <i>Name RU</i>
+                  </b>
+                </TableCell>
+                <TableCell align="right">
+                  <b>
+                    <i>text_ru</i>
+                  </b>
+                </TableCell>
+                <TableCell align="right">
+                  <b>
+                    <i>text_uz</i>
+                  </b>
+                </TableCell>
+                <TableCell align="right">
+                  <b>
+                    <i>Category</i>
+                  </b>
+                </TableCell>
+                <TableCell align="right">
+                  <CreateModal />
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data?.length > 0 &&
+                data
+                  .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+                  .map((product) => (
+                    <TableRow key={product.id}>
+                      <TableCell width={200}>
+                        <img
+                          src={`${IMAGE_URL + product.image_src}`}
+                          height={50}
+                          style={{
+                            objectFit: "contain"
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell>{product.name_uz}</TableCell>
+                      <TableCell>{product.name_ru}</TableCell>
+                      <TableCell>{product.text_ru}</TableCell>
+                      <TableCell align="right">{product.text_uz}</TableCell>
+                      <TableCell align="right">
+                        {product?.company?.name_uz}
+                      </TableCell>
+                      <TableCell align="right">
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-end"
+                          }}
+                        >
+                          <EditModal id={product.id} />
+                          <Button
+                            color="error"
+                            onClick={handleDelete.bind(null, product.id)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 25]}
+                  colSpan={3}
+                  count={data?.length || 10}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  SelectProps={{
+                    inputProps: {
+                      "aria-label": "rows per page"
+                    },
+                    native: true
+                  }}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActions}
+                />
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+      )}
+    </>
+  );
+}
