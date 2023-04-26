@@ -44,11 +44,12 @@ export default function CreateModal() {
       images: data.get("images"),
       name_ru: data.get("name_ru"),
       name_en: data.get("name_en"),
-      text_ru: data.get("text_ru"),
-      text_en: data.get("text_en"),
+      title_ru: data.get("title_ru"),
+      title_en: data.get("title_en"),
       multipack_type: data.get("multipack_type"),
       package_size: data.get("package_size"),
       package_quantity: data.get("package_quantity"),
+      price: data.get("price"),
       type_of_packaging: data.get("type_of_packaging"),
       toy_size: data.get("toy_size"),
       articul: data.get("articul"),
@@ -118,8 +119,8 @@ export default function CreateModal() {
             <div>
               <TextField
                 sx={{ width: 550, marginBottom: "10px" }}
-                label="text_ru"
-                name="text_ru"
+                label="title_ru"
+                name="title_ru"
                 multiline
                 maxRows={4}
                 required
@@ -127,8 +128,8 @@ export default function CreateModal() {
             </div>
             <TextField
               sx={{ width: 550, marginBottom: "10px" }}
-              label="text_en"
-              name="text_en"
+              label="title_en"
+              name="title_en"
               multiline
               maxRows={4}
               required
@@ -137,6 +138,14 @@ export default function CreateModal() {
               sx={{ width: 550, marginBottom: "10px" }}
               label="package_quantity"
               name="package_quantity"
+              multiline
+              maxRows={4}
+              required
+            />
+            <TextField
+              sx={{ width: 550, marginBottom: "10px" }}
+              label="price"
+              name="price"
               multiline
               maxRows={4}
               required

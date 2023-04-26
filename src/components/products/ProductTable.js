@@ -133,11 +133,6 @@ export default function ProductTable() {
               <TableRow>
                 <TableCell>
                   <b>
-                    <i>Image</i>
-                  </b>
-                </TableCell>
-                <TableCell>
-                  <b>
                     <i>Name RU</i>
                   </b>
                 </TableCell>
@@ -146,11 +141,7 @@ export default function ProductTable() {
                     <i>text_ru</i>
                   </b>
                 </TableCell>
-                <TableCell align="right">
-                  <b>
-                    <i>Category</i>
-                  </b>
-                </TableCell>
+
                 <TableCell align="right">
                   <CreateModal />
                 </TableCell>
@@ -162,17 +153,17 @@ export default function ProductTable() {
                   .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                   .map((product) => (
                     <TableRow key={product.id}>
-                      <TableCell width={200}>
+                      {/* <TableCell width={200}>
                         <img
-                          src={`${IMAGE_URL + product.image_src}`}
+                          src={`${IMAGE_URL + product.images}`}
                           height={50}
                           style={{
                             objectFit: "contain",
                           }}
                         />
-                      </TableCell>
-                      <TableCell>{product.name_ru}</TableCell>
-                      <TableCell>{product.text_ru}</TableCell>
+                      </TableCell> */}
+                      <TableCell>{product.title_ru}</TableCell>
+                      <TableCell>{product.title_en}</TableCell>
                       <TableCell align="right">
                         <div
                           style={{

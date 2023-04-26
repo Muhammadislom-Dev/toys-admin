@@ -62,7 +62,7 @@ export default function AboutTable() {
                   <TableRow key={worker.id}>
                     <TableCell width={200} align="center">
                       <img
-                        src={`${IMAGE_URL + worker.images}`}
+                        src={`${IMAGE_URL + worker.image_src}`}
                         alt=""
                         height={50}
                         style={{
