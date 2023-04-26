@@ -196,7 +196,7 @@ export default function MiniDrawer({ children }) {
               </ListItemButton>
             </Link>
             <Link
-              to={"/news"}
+              to={"/workers"}
               style={{
                 color: "rgba(0, 0, 0, 0.87)",
                 textDecoration: "none",
@@ -224,7 +224,7 @@ export default function MiniDrawer({ children }) {
               </ListItemButton>
             </Link>
             <Link
-              to={"/about"}
+              to={"/news"}
               style={{
                 color: "rgba(0, 0, 0, 0.87)",
                 textDecoration: "none",

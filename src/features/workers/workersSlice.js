@@ -16,7 +16,7 @@ const initialState = {
     singleWorkerError: undefined,
 };
 
-const prefix = 'workers';
+const prefix = 'sliders';
 const workerPrefix = prefix;
 const editWorkerPrefix = `${prefix}/edit`;
 const createWorkerPrefix = `${prefix}/create`;
@@ -27,7 +27,7 @@ export const fetchWorkers = createAsyncThunk(
     workerPrefix,
     async (_, thunkAPI) => {
         try {
-            const { data } = await axios.get('workers');
+            const { data } = await axios.get('sliders');
             return data;
         } catch (e) {
             const message = getErrorMessage(e);
@@ -41,7 +41,7 @@ export const createWorker = createAsyncThunk(
     async (formData, thunkAPI) => {
         try {
             const { data } = await axios.post(
-                'workers',
+                'sliders',
                 formData,
                 withToken(true)
             );
@@ -60,7 +60,7 @@ export const deleteWorkerById = createAsyncThunk(
     async (id, thunkAPI) => {
         try {
             const { message } = await axios.delete(
-                `workers/${id}`,
+                `sliders/${id}`,
                 withToken()
             );
             notify('Worker was deleted  successfully', 'success');
@@ -77,7 +77,7 @@ export const fetchWorkerById = createAsyncThunk(
     getOneWorkerPrefix,
     async (id, thunkAPI) => {
         try {
-            const { data } = await axios.get(`workers/${id}`);
+            const { data } = await axios.get(`sliders/${id}`);
             return data;
         } catch (e) {
             const message = getErrorMessage(e);
@@ -91,7 +91,7 @@ export const updateWorkerById = createAsyncThunk(
     async (options, thunkAPI) => {
         try {
             const { message } = await axios.put(
-                `workers/${options.id}`,
+                `sliders/${options.id}`,
                 options.formData,
                 withToken(true)
             );

@@ -9,6 +9,7 @@ import ProductTable from "./components/products/ProductTable";
 import NewsTable from "./components/news/NewsTable";
 import TypesTable from "./components/types/TypesTable";
 import AboutTable from "./components/about/AboutTable";
+import WorkersTable from "./components/workers/WorkersTable";
 
 function App() {
   return (
@@ -18,10 +19,9 @@ function App() {
         <div>
           <MiniDrawer>
             <PrivateRoute component={CompanyTable} exact />
-            {/* <PrivateRoute component={TypesTable} path="/discount" exact /> */}
             <PrivateRoute component={ProductTable} path="/products" exact />
-            <PrivateRoute component={NewsTable} path="/news" exact />
-            <PrivateRoute component={AboutTable} path="/about" exact />
+            <PrivateRoute component={WorkersTable} path="/news" exact />
+            <PrivateRoute component={AboutTable} path="/workers" exact />
           </MiniDrawer>
         </div>
       </Switch>

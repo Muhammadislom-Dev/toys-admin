@@ -29,7 +29,7 @@ export default function CreateModal() {
 
   const { createWorker, fetchCompanies } = useActions();
   const {
-    companies: { data }
+    companies: { data },
   } = useSelector((state) => state.companies);
 
   React.useEffect(() => {
@@ -40,16 +40,9 @@ export default function CreateModal() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     createWorker({
-      image: data.get("img_src"),
-      full_name_uz: data.get("full_name_uz"),
-      full_name_ru: data.get("full_name_ru"),
-      full_name_en: data.get("full_name_en"),
-      job_uz: data.get("job_uz"),
-      job_ru: data.get("job_ru"),
-      job_en: data.get("job_en"),
-      phone_number: data.get("phone_number"),
-      instagram: data.get("instagram"),
-      telegram: data.get("telegram")
+      file: data.get("file"),
+      title_en: data.get("title_en"),
+      title_ru: data.get("title_ru"),
     });
     handleClose();
   };
@@ -64,8 +57,7 @@ export default function CreateModal() {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
+        aria-describedby="alert-dialog-slide-description">
         <DialogTitle>{"Add company"}</DialogTitle>
         <form onSubmit={handleSubmit}>
           <DialogContent>
@@ -74,17 +66,17 @@ export default function CreateModal() {
                 display: "flex",
                 alignItems: "center",
                 marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
+                justifyContent: "space-between",
+              }}>
               <input
+                id="image-input"
                 className="form-control"
                 style={{
                   width: "250px",
                   marginRight: "20px",
-                  fontSize: "1rem"
+                  fontSize: "1rem",
                 }}
-                name="img_src"
+                name="file"
                 type="file"
                 required
               />
@@ -94,94 +86,20 @@ export default function CreateModal() {
                 display: "flex",
                 alignItems: "center",
                 marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
+                justifyContent: "space-between",
+              }}>
               <TextField
-                sx={{ width: 230 }}
-                label="full_name_uz"
-                name="full_name_uz"
-                required
-              />
-              <TextField
-                sx={{ width: 230 }}
-                label="full_name_ru"
-                name="full_name_ru"
+                sx={{ width: 550, marginBottom: "10px" }}
+                label="Title RU"
+                name="title_ru"
                 required
               />
             </div>
-            <TextField
-              sx={{ width: 550 }}
-              label="full_name_en"
-              name="full_name_en"
-              required
-            />
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
+            <div>
               <TextField
-                sx={{ width: 230 }}
-                label="Instagram Link"
-                name="instagram"
-                required
-              />
-              <TextField
-                sx={{ width: 230 }}
-                label="job_uz"
-                name="job_uz"
-                multiline
-                maxRows={4}
-                required
-              />
-            </div>
-            <TextField
-              sx={{ width: 550 }}
-              label="job_en"
-              name="job_en"
-              multiline
-              maxRows={4}
-              required
-            />
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
-              <TextField
-                sx={{ width: 230 }}
-                label="job_ru"
-                name="job_ru"
-                multiline
-                maxRows={4}
-                required
-              />
-              <TextField
-                sx={{ width: 230 }}
-                label="telegram"
-                name="telegram"
-                required
-              />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "10px",
-                justifyContent: "space-between"
-              }}
-            >
-              <TextField
-                sx={{ width: 230 }}
-                label="Phone"
-                name="phone_number"
+                sx={{ width: 550, marginBottom: "10px" }}
+                label="Title EN"
+                name="title_en"
                 required
               />
             </div>

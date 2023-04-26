@@ -20,7 +20,7 @@ export default function EditModal({ id }) {
   const { updateWorkerById, fetchWorkerById, fetchCompanies } = useActions();
   const { workers, workersLoading } = useSelector((state) => state.workers);
   const {
-    companies: { data }
+    companies: { data },
   } = useSelector((state) => state.companies);
 
   React.useEffect(() => {
@@ -41,32 +41,12 @@ export default function EditModal({ id }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const formData = data.get("img_src")
-      ? {
-          image: data.get("img_src"),
-          full_name_uz: data.get("full_name_uz"),
-          full_name_ru: data.get("full_name_ru"),
-          full_name_en: data.get("full_name_en"),
-          job_uz: data.get("job_uz"),
-          job_ru: data.get("job_ru"),
-          job_en: data.get("job_en"),
-          phone_number: data.get("phone_number"),
-          instagram: data.get("instagram"),
-          telegram: data.get("telegram")
-        }
-      : {
-          image: data.get("img_src"),
-          full_name_uz: data.get("full_name_uz"),
-          full_name_ru: data.get("full_name_ru"),
-          full_name_en: data.get("full_name_en"),
-          job_uz: data.get("job_uz"),
-          job_ru: data.get("job_ru"),
-          job_en: data.get("job_en"),
-          phone_number: data.get("phone_number"),
-          instagram: data.get("instagram"),
-          telegram: data.get("telegram")
-        };
-    updateWorkerById({ formData, id });
+    updateWorkerById({
+      file: data.get("file"),
+      title_en: data.get("title_en"),
+      title_ru: data.get("title_ru"),
+      id,
+    });
     handleClose();
   };
 
@@ -80,8 +60,7 @@ export default function EditModal({ id }) {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
+        aria-describedby="alert-dialog-slide-description">
         <DialogTitle>{"Edit company"}</DialogTitle>
         {workers?.data && !workersLoading && (
           <Box component={"form"} onSubmit={handleSubmit} noValidate>
@@ -91,15 +70,14 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <input
                   className="form-control"
                   style={{
                     width: "250px",
                     marginRight: "20px",
-                    fontSize: "1rem"
+                    fontSize: "1rem",
                   }}
                   name="img_src"
                   type="file"
@@ -110,9 +88,8 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <TextField
                   sx={{ width: 230 }}
                   label="full_name_uz"
@@ -140,9 +117,8 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <TextField
                   sx={{ width: 230 }}
                   label="job_uz"
@@ -171,9 +147,8 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <TextField
                   sx={{ width: 230 }}
                   label="instagram"
@@ -195,9 +170,8 @@ export default function EditModal({ id }) {
                   display: "flex",
                   alignItems: "center",
                   marginBottom: "10px",
-                  justifyContent: "space-between"
-                }}
-              >
+                  justifyContent: "space-between",
+                }}>
                 <TextField
                   sx={{ width: 230 }}
                   label="telegram"

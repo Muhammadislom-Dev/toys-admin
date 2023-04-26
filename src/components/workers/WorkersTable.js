@@ -42,9 +42,8 @@ export default function WorkersTable() {
           <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
             <TableHead
               style={{
-                backgroundColor: "rgb(220, 220, 220)"
-              }}
-            >
+                backgroundColor: "rgb(220, 220, 220)",
+              }}>
               <TableRow>
                 <TableCell>
                   <b>
@@ -54,26 +53,6 @@ export default function WorkersTable() {
                 <TableCell>
                   <b>
                     <i>full_name_uz</i>
-                  </b>
-                </TableCell>
-                <TableCell>
-                  <b>
-                    <i>full_name_ru</i>
-                  </b>
-                </TableCell>
-                <TableCell>
-                  <b>
-                    <i>job_uz</i>
-                  </b>
-                </TableCell>
-                <TableCell>
-                  <b>
-                    <i>job_ru</i>
-                  </b>
-                </TableCell>
-                <TableCell align="right">
-                  <b>
-                    <i>telegram</i>
                   </b>
                 </TableCell>
                 <TableCell align="right">
@@ -87,33 +66,25 @@ export default function WorkersTable() {
                   <TableRow key={worker.id}>
                     <TableCell width={200}>
                       <img
-                        src={`${IMAGE_URL + worker.image_src}`}
+                        src={`${IMAGE_URL + worker.src}`}
                         height={50}
                         style={{
-                          objectFit: "contain"
+                          objectFit: "contain",
                         }}
                       />
                     </TableCell>
-                    <TableCell>{worker.full_name_uz}</TableCell>
-                    <TableCell>{worker.full_name_ru}</TableCell>
-                    <TableCell>{worker.job_uz}</TableCell>
-                    <TableCell>{worker.job_ru}</TableCell>
-                    <TableCell align="right">
-                      {worker?.company?.telegram}
-                    </TableCell>
+                    <TableCell>{worker.title_ru}</TableCell>
                     <TableCell align="right">
                       <div
                         style={{
                           display: "flex",
                           alignItems: "center",
-                          justifyContent: "flex-end"
-                        }}
-                      >
+                          justifyContent: "flex-end",
+                        }}>
                         <EditModal id={worker.id} />
                         <Button
                           color="error"
-                          onClick={handleDelete.bind(null, worker.id)}
-                        >
+                          onClick={handleDelete.bind(null, worker?.id)}>
                           Delete
                         </Button>
                       </div>

@@ -130,7 +130,6 @@ export default function NewsTable() {
   //     updateStatusNews({ id: newObj["id"], formData: newObj });
   //   };
 
-  console.log(IMAGE_URL + "51fe496d-94d0-4456-b4cf-e0f7ae0971f5.jpeg")
 
   return (
     <>
