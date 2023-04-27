@@ -55,6 +55,6 @@ export const inputClear = () => {
   }
 };
 
-export const IMAGE_URL = "http://206.189.128.106:4444/api/uploads/images/";
+export const IMAGE_URL = "https://admin.dipsag.uz/api/uploads/images/";
 
-axios.defaults.baseURL = "http://206.189.128.106:4444/api/";
+axios.defaults.baseURL = "https://admin.dipsag.uz/api/";
